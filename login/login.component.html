@@ -1,0 +1,618 @@
+
+<div class="background row">
+    <ul>
+        <li class="title">
+            <a routerLink='../login'><img class="image" src="../../favicon.ico"> Fitness Tracker</a>
+        </li>
+
+        <li><a routerLink='../login'>Login</a></li>
+        <li><a routerLink='../signup'>Signup</a></li>
+        <li><a routerLink='../index'>Home</a></li>
+    </ul>
+
+
+    <div class="form-class">
+        <br>
+        <img class="form-image " src="../../favicon.ico">
+
+        <h2 style="color: white"><b>WELCOME</b></h2>
+        <br><br><br>
+
+        <div *ngIf="error">
+            <div class="alert alert-danger">
+                <strong style="color: black; font-size: 20px;">{{error}}</strong>
+            </div>
+        </div>
+        <form #loginForm="ngForm" (submit)="edit(loginForm.value)">
+            <div class="form-group">
+                <label class="emailpadding" for="email">Email:</label>
+                <input type="email" id="email" placeholder="Email" class="form-control" name="email" ngModel required/>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" id="pwd" class="form-control" placeholder="password" name="password" ngModel required/>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Let's Go</button>&nbsp;
+            <button class="btn btn-default" (click)="signin()">Login With 
+                <img src="http://transformations-spafitness.com/wp-content/uploads/2013/11/google-logo-icon-PNG-Transparent-Background-1-300x300.png" height="25px" width="25px">
+            </button>
+        </form>
+        <br>
+        <button type="button" class="btn btn-link" id="model" data-toggle="modal" data-target="#myModal" style="color: white">
+                Forget Password?
+              </button>
+
+
+
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h3 class="modal-title">Please enter valid email</h3>
+                <button type="button" class="close" #closeAddExpenseModal data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <div *ngIf="error1">
+                    <div class="alert alert-danger">
+                        <strong style="color: black; font-size: 20px;">{{error1}}</strong>
+                    </div>
+                </div>
+                <form #email="ngForm" (submit)="changepassword(email.value,$event)">
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" id="email" placeholder="Email" class="form-control" name="email" ngModel required/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<button id="openModal" #openModal [hidden]="true" data-toggle="modal" data-target="#myModal1"></button>
+
+<div class="modal fade" id="myModal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h3 class="modal-title">Please enter token recieved</h3>
+                <button type="button" class="close" #closeAddExpenseModal1 data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <div *ngIf="error1">
+                    <div class="alert alert-danger">
+                        <strong style="color: black; font-size: 20px;">{{error1}}</strong>
+                    </div>
+                </div>
+                <form #passwordForm="ngForm" (submit)="loginPassword(passwordForm.value,$event)">
+                    <div class="form-group">
+                        <label for="password">Token</label>
+                        <input type="password" id="password" placeholder="token" class="form-control" name="password" ngModel required/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<button id="openModal1" #openModal1 [hidden]="true" data-toggle="modal" data-target="#myModal2"></button>
+
+<div class="modal fade" id="myModal2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h3 class="modal-title">Please enter new password</h3>
+                <button type="button" class="close" #closeAddExpenseModal2 data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div *ngIf="error2">
+                    <div class="alert alert-danger">
+                        <strong style="color: black; font-size: 20px;">{{error2}}</strong>
+                    </div>
+                </div>
+
+                <form #changeForm="ngForm" ngNativeValidate (submit)="updatePassword(changeForm.value,$event)">
+                    <div class="form-group">
+                        <label for="password">password</label>
+                        <input type="password" id="password" placeholder="new password" class="form-control" name="password" ngModel minlength="8" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpassword">confirm pasword</label>
+                        <input type="password" id="cpassword" placeholder="confirm password" class="form-control" name="cpassword" ngModel minlength="8" required/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spacebmi"></div>
+
+
+
+<!-- bmi image and text -->
+<div class="space">
+    <img  class="bmiimage" src="https://www.1mg.com/articles/wp-content/uploads/2018/07/BMI.jpg" alt="Italian Trulli">
+   
+    <main class="st_viewport">
+      <div class="st_wrap_table" data-table_id="0">
+        <header class="st_table_header">
+          <h2>Table header one</h2>
+          <div class="st_row">
+            <div class="st_column _rank">Rank</div>
+            <div class="st_column _name">Name</div>
+            <div class="st_column _surname">Surname</div>
+            <div class="st_column _year">Year</div>
+            <div class="st_column _section">Section</div>
+          </div>
+        </header>
+        <div class="st_table">
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">John</div>
+            <div class="st_column _surname">Doe</div>
+            <div class="st_column _year">1973</div>
+            <div class="st_column _section">Germany</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Max</div>
+            <div class="st_column _surname">Luke</div>
+            <div class="st_column _year">1971</div>
+            <div class="st_column _section">USA</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Jonas</div>
+            <div class="st_column _surname">Kunze</div>
+            <div class="st_column _year">2015</div>
+            <div class="st_column _section">Germany</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Janina</div>
+            <div class="st_column _surname">Endres</div>
+            <div class="st_column _year">1955</div>
+            <div class="st_column _section">Belgium</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Lena</div>
+            <div class="st_column _surname">Eifel</div>
+            <div class="st_column _year">1996</div>
+            <div class="st_column _section">Germany</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Jonas</div>
+            <div class="st_column _surname">Nacht</div>
+            <div class="st_column _year">1968</div>
+            <div class="st_column _section">Swiss</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Vanessa</div>
+            <div class="st_column _surname">Schneider</div>
+            <div class="st_column _year">2004</div>
+            <div class="st_column _section">Russia</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">laura</div>
+            <div class="st_column _surname">Beike</div>
+            <div class="st_column _year">1952</div>
+            <div class="st_column _section">Sweden</div>
+          </div>
+        </div>
+      </div>
+      <div class="st_wrap_table" data-table_id="1">
+        <header class="st_table_header">
+          <h2>Holy shit :@</h2>
+          <div class="st_row">
+            <div class="st_column _rank">Rank</div>
+            <div class="st_column _name">Name</div>
+            <div class="st_column _surname">Surname</div>
+            <div class="st_column _year">Year</div>
+            <div class="st_column _section">Section</div>
+          </div>
+        </header>
+        <div class="st_table">
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Jonas</div>
+            <div class="st_column _surname">Kunze</div>
+            <div class="st_column _year">2015</div>
+            <div class="st_column _section">Germany</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Janina</div>
+            <div class="st_column _surname">Endres</div>
+            <div class="st_column _year">1955</div>
+            <div class="st_column _section">Belgium</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Lena</div>
+            <div class="st_column _surname">Eifel</div>
+            <div class="st_column _year">1996</div>
+            <div class="st_column _section">Germany</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">John</div>
+            <div class="st_column _surname">Doe</div>
+            <div class="st_column _year">1973</div>
+            <div class="st_column _section">Germany</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Max</div>
+            <div class="st_column _surname">Luke</div>
+            <div class="st_column _year">1971</div>
+            <div class="st_column _section">USA</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Jonas</div>
+            <div class="st_column _surname">Nacht</div>
+            <div class="st_column _year">1968</div>
+            <div class="st_column _section">Swiss</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Vanessa</div>
+            <div class="st_column _surname">Schneider</div>
+            <div class="st_column _year">2004</div>
+            <div class="st_column _section">Russia</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">laura</div>
+            <div class="st_column _surname">Beike</div>
+            <div class="st_column _year">1952</div>
+            <div class="st_column _section">Sweden</div>
+          </div>
+        </div>
+      </div>
+      <div class="st_wrap_table" data-table_id="2">
+        <header class="st_table_header">
+          <h2>Isn't that nice</h2>
+          <div class="st_row">
+            <div class="st_column _rank">Rank</div>
+            <div class="st_column _name">Name</div>
+            <div class="st_column _surname">Surname</div>
+            <div class="st_column _year">Year</div>
+            <div class="st_column _section">Section</div>
+          </div>
+        </header>
+        <div class="st_table">
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Vanessa</div>
+            <div class="st_column _surname">Schneider</div>
+            <div class="st_column _year">2004</div>
+            <div class="st_column _section">Russia</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">laura</div>
+            <div class="st_column _surname">Beike</div>
+            <div class="st_column _year">1952</div>
+            <div class="st_column _section">Sweden</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">John</div>
+            <div class="st_column _surname">Doe</div>
+            <div class="st_column _year">1973</div>
+            <div class="st_column _section">Germany</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Max</div>
+            <div class="st_column _surname">Luke</div>
+            <div class="st_column _year">1971</div>
+            <div class="st_column _section">USA</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Jonas</div>
+            <div class="st_column _surname">Kunze</div>
+            <div class="st_column _year">2015</div>
+            <div class="st_column _section">Germany</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Janina</div>
+            <div class="st_column _surname">Endres</div>
+            <div class="st_column _year">1955</div>
+            <div class="st_column _section">Belgium</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Lena</div>
+            <div class="st_column _surname">Eifel</div>
+            <div class="st_column _year">1996</div>
+            <div class="st_column _section">Germany</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Jonas</div>
+            <div class="st_column _surname">Nacht</div>
+            <div class="st_column _year">1968</div>
+            <div class="st_column _section">Swiss</div>
+          </div>
+        </div>
+      </div>
+      <div class="st_wrap_table" data-table_id="3">
+        <header class="st_table_header">
+          <h2>Native STICKY</h2>
+          <div class="st_row">
+            <div class="st_column _rank">Rank</div>
+            <div class="st_column _name">Name</div>
+            <div class="st_column _surname">Surname</div>
+            <div class="st_column _year">Year</div>
+            <div class="st_column _section">Section</div>
+          </div>
+        </header>
+        <div class="st_table">
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">John</div>
+            <div class="st_column _surname">Doe</div>
+            <div class="st_column _year">1973</div>
+            <div class="st_column _section">Germany</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Lena</div>
+            <div class="st_column _surname">Eifel</div>
+            <div class="st_column _year">1996</div>
+            <div class="st_column _section">Germany</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Jonas</div>
+            <div class="st_column _surname">Nacht</div>
+            <div class="st_column _year">1968</div>
+            <div class="st_column _section">Swiss</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Vanessa</div>
+            <div class="st_column _surname">Schneider</div>
+            <div class="st_column _year">2004</div>
+            <div class="st_column _section">Russia</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">laura</div>
+            <div class="st_column _surname">Beike</div>
+            <div class="st_column _year">1952</div>
+            <div class="st_column _section">Sweden</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Max</div>
+            <div class="st_column _surname">Luke</div>
+            <div class="st_column _year">1971</div>
+            <div class="st_column _section">USA</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Jonas</div>
+            <div class="st_column _surname">Kunze</div>
+            <div class="st_column _year">2015</div>
+            <div class="st_column _section">Germany</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Janina</div>
+            <div class="st_column _surname">Endres</div>
+            <div class="st_column _year">1955</div>
+            <div class="st_column _section">Belgium</div>
+          </div>
+        </div>
+      </div>
+      <div class="st_wrap_table" data-table_id="4">
+        <header class="st_table_header">
+          <h2>CSS3 *~'</h2>
+          <div class="st_row">
+            <div class="st_column _rank">Rank</div>
+            <div class="st_column _name">Name</div>
+            <div class="st_column _surname">Surname</div>
+            <div class="st_column _year">Year</div>
+            <div class="st_column _section">Section</div>
+          </div>
+        </header>
+        <div class="st_table">
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">John</div>
+            <div class="st_column _surname">Doe</div>
+            <div class="st_column _year">1973</div>
+            <div class="st_column _section">Germany</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Max</div>
+            <div class="st_column _surname">Luke</div>
+            <div class="st_column _year">1971</div>
+            <div class="st_column _section">USA</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Jonas</div>
+            <div class="st_column _surname">Kunze</div>
+            <div class="st_column _year">2015</div>
+            <div class="st_column _section">Germany</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Jonas</div>
+            <div class="st_column _surname">Nacht</div>
+            <div class="st_column _year">1968</div>
+            <div class="st_column _section">Swiss</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Vanessa</div>
+            <div class="st_column _surname">Schneider</div>
+            <div class="st_column _year">2004</div>
+            <div class="st_column _section">Russia</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Janina</div>
+            <div class="st_column _surname">Endres</div>
+            <div class="st_column _year">1955</div>
+            <div class="st_column _section">Belgium</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">Lena</div>
+            <div class="st_column _surname">Eifel</div>
+            <div class="st_column _year">1996</div>
+            <div class="st_column _section">Germany</div>
+          </div>
+          <div class="st_row">
+            <div class="st_column _rank">0</div>
+            <div class="st_column _name">laura</div>
+            <div class="st_column _surname">Beike</div>
+            <div class="st_column _year">1952</div>
+            <div class="st_column _section">Sweden</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+ 
+
+
+
+<div class="text">
+    <div class="try">
+        <div class="page">
+            <div class="page__section">
+                <span class="page__name-effect">type #1</span>
+                <div class="page__group">
+                    <article class="news">
+                        <header class="news__header">
+                            <time class="news__date" datetime="2019-05-31">
+                                <span class="news__day">31</span>
+                                <span class="news__year">May 2019</span>
+                            </time>
+                            <h3 class="r-title news__title">
+                                <a href="#0" class="r-link animated-underline animated-underline_type1 news__link">
+                                    Implementing Private Variables In JavaScript
+                                </a>
+                            </h3>	
+                        </header>
+                        <div class="news__content">
+                            <p>
+                                JavaScript (or ECMAScript) is the programming language that powers the web. Created in May 1995 by Brendan Eich, it’s found its place as a widely-used and versatile technology. Despite its success, it’s been met with its fair share of criticism, especially for idiosyncrasies. Things like objects being casted to string form when used as indices, 1 == "1" returning true, or the notoriously confusing this keyword. A particularly interesting quirk though, is the existence of various techniques for variable privacy…
+                            </p>
+                        </div>
+                    </article>
+                    <article class="news arabic">
+                        <header class="news__header">
+                            <time class="news__date" datetime="2019-05-31">
+                                <span class="news__day">3</span>
+                                <span class="news__year">June 2019</span>
+                            </time>
+                            <h3 class="r-title news__title">
+                                <a href="#0" class="r-link animated-underline animated-underline_type1 news__link">
+                                    Do you need an ICON ONLY button without screwing up the accessibility?
+                                </a>
+                            </h3>	
+                        </header>
+                        <div class="news__content">
+                            <p>
+                                The first consideration is: do you really? If you can, having text next to your icons is proven over and over again to be the most accessible and clearest UX (see Apple's latest blunder). But if you need to (and I get it, sometimes you need to), Sara Soueidan and Scott O'Hara have a pair of articles that nicely lay out all the options and present actual research on this topic.					</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+<footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>About</h6>
+          <p class="text-justify"><b>Fitness Tracker</b> is established to give the healthy life back to the people who were in the search of health and well-being because <i>EVERYONE DESERVES TO BE HEALTHY AND FIT</i></p>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Our Services</h6>
+          <ul class="footer-links">
+            <li><a href="https://www.google.com/search?q=cardio"> Cardio</a></li>
+            <li><a href="https://www.google.com/search?q=weight%20training">Weight training</a></li>
+            <li><a href="https://www.google.com/search?sxsrf=ALeKk00NrDzl7fU4BZjCgU964njQ4jFGCg%3A1593100327161&ei=J8j0XtS9Cd3Wz7sPn_q16A4&q=yoga&oq=yoga&gs_lcp=CgZwc3ktYWIQAzIHCAAQsQMQQzIECAAQQzIECAAQQzIECAAQQzIECAAQQzIECAAQQzIECAAQQzIECAAQQzIECAAQQzIFCAAQsQM6BwgjEOoCECc6BAgjECc6BQgAEIMBOgIIAFCaqgFYqa8BYP-wAWgBcAB4AIABzwGIAdADkgEFMC4yLjGYAQCgAQGqAQdnd3Mtd2l6sAEK&sclient=psy-ab&ved=0ahUKEwiU7d2YqZ3qAhVd63MBHR99De0Q4dUDCAw&uact=5">Yoga</a></li>
+            <li><a href="https://www.google.com/search?sxsrf=ALeKk03-qMXon0xm7usw5-QeX5J5MvIWlQ%3A1593100372284&ei=VMj0Xr_4EKfjz7sPiMS1qAs&q=meditation&oq=medi&gs_lcp=CgZwc3ktYWIQAxgAMgcIABCxAxBDMgQIABBDMgIIADIHCAAQFBCHAjIFCAAQsQMyAggAMgIIADICCAAyBQgAELEDMgUIABCDAToHCCMQ6gIQJzoECCMQJzoFCAAQkQJQrcoCWIDPAmD_2AJoAXAAeACAAY4CiAGvB5IBBTAuMS4zmAEAoAEBqgEHZ3dzLXdperABCg&sclient=psy-ab">Meditation</a></li>
+            <li><a href="https://www.google.com/search?sxsrf=ALeKk01UccHaQvzWEt43Gz_w1wr7_WTCUw%3A1593100351010&ei=P8j0Xt0f3eLPuw_F3r24CQ&q=pilates&oq=pilates&gs_lcp=CgZwc3ktYWIQAzIECCMQJzIECAAQQzIHCAAQsQMQQzIKCAAQsQMQFBCHAjIECAAQQzIFCAAQsQMyBAgAEEMyBAgAEEMyBQgAELEDMgQIABBDOgcIIxDqAhAnOgIIADoFCAAQgwFQ2ZMBWKqbAWDGnAFoAXAAeACAAZQCiAGECZIBBTAuMS40mAEAoAEBqgEHZ3dzLXdperABCg&sclient=psy-ab&ved=0ahUKEwidu42kqZ3qAhVd8XMBHUVvD5cQ4dUDCAw&uact=5">Pilates</a></li>
+            <li><a href="https://www.google.com/search?sxsrf=ALeKk02mxh2yEGhVZ1wWofHn3TklNUBIwA%3A1593100417484&ei=gcj0XrSOHdXD3LUPrYiY-AM&q=zumba&oq=zumba&gs_lcp=CgZwc3ktYWIQAzIECAAQQzIECAAQQzIHCAAQsQMQQzIFCAAQsQMyBwgAEBQQhwIyAggAMgUIABCxAzIFCAAQsQMyAggAMgUIABCxAzoHCCMQ6gIQJzoECCMQJzoFCAAQkQI6CAgAELEDEJECUPqcAVjzpQFgsacBaAFwAHgAgAGTAogBwQeSAQMyLTSYAQCgAQGqAQdnd3Mtd2l6sAEK&sclient=psy-ab&ved=0ahUKEwj00ubDqZ3qAhXVIbcAHS0EBj8Q4dUDCAw&uact=5">Zumba</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="http://scanfcode.com/about/">About Us</a></li>
+            <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+            <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+            <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by 
+       <a href="#">Fitness Tracker</a>.
+          </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+            <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
+          </ul>
+        </div>
+      </div>
+    </div>
+</footer>
